@@ -1,16 +1,26 @@
 Rails.application.routes.draw do
-  devise_for :admins
-  devise_for :users
-  
-  # 顧客用
-  # URL /customers/sign_in ...
-  devise_for :customers, skip: [:passwords], controllers: {
+
+  root to: 'homes#top'
+
+  namespace :admin do
+    resources :users, only: [:edit, :index, :show, :update, :destroy]
+    resources :posts, only: [:edit, :index, :show, :update, :destroy]
+    resources :genres, only: [:new, :edit, :index, :create, :update]
+  end
+
+  namespace :public do
+    resources :users, only: [:show]
+    resources :posts, only: [:new, :edit, :create, :index, :show, :update, :destroy] do
+      resource :favorites, only: [:create, :destroy]
+      resources :post_comments, only: [:create, :destroy]
+    end
+  end
+
+  devise_for :users, skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
   }
-  
-  # 管理者用
-  # URL /admin/sign_in ...
+
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
   }
