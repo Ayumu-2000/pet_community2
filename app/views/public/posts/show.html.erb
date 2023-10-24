@@ -1,2 +1,19 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col_lg_12">
+      <h2>投稿詳細</h2>
+      <table>
+        <tbody>
+          <tr>
+            <td>ペットの名前</td>
+            <td><%= @post.pet_name %></td>
+          </tr>
+          <tr>
+            <td>ペットについて</td>
+            <td><%= @post.pet_explanation %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

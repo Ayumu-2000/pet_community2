@@ -1,2 +1,14 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col_lg_12">
+      <h2>投稿編集</h2>
+      <%= form_with model: @post, url: public_post_path, method: :patch do |f| %>
+        <h4>タイトル</h4>
+        <%= f.text_field :pet_name %>
+        <h4>本文</h4>
+        <%= f.text_area :pet_explanation %><br>
+        <%= f.submit "更新する" %>
+      <% end %>
+    </div>
+  </div>
+</div>

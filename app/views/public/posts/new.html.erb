@@ -1,2 +1,16 @@
-<h1>Public::Posts#new</h1>
-<p>Find me in app/views/public/posts/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col_lg_12">
+      <h2>新規投稿</h2>
+      <%= form_with model: @post, url: public_posts_path, method: :post do |f| %>
+        <h4>タイトル</h4>
+        <%= f.text_field :pet_name %>
+        <h4>ジャンル</h4>
+        <%= f.collection_select :genre_id, Genre.all, :id, :genre_name %><br>
+        <h4>本文</h4>
+        <%= f.text_area :pet_explanation %><br>
+        <%= f.submit "投稿する" %>
+      <% end %>
+    </div>
+  </div>
+</div>
