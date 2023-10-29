@@ -3,9 +3,11 @@
     <div class="col_lg_12">
       <h2>投稿編集</h2>
       <%= form_with model: @post, url: public_post_path, method: :patch do |f| %>
-        <h4>タイトル</h4>
-        <%= f.text_field :pet_name %>
-        <h4>本文</h4>
+        <h4>ペットの名前</h4>
+        <%= f.text_field :pet_name %><br>
+        <h4>種類</h4>
+        <%= f.collection_select :genre_id, Genre.all, :id, :genre_name %><br>
+        <h4>説明</h4>
         <%= f.text_area :pet_explanation %><br>
         <%= f.submit "更新する" %>
       <% end %>

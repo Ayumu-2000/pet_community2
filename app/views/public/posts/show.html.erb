@@ -5,12 +5,50 @@
       <table>
         <tbody>
           <tr>
-            <td>ペットの名前</td>
+            <td>ペットの名前:</td>
             <td><%= @post.pet_name %></td>
           </tr>
           <tr>
-            <td>ペットについて</td>
+            <td>種類:</td>
+            <td><%= @post.genre.genre_name %></td>
+          </tr>
+          <tr>
+            <td>説明:</td>
             <td><%= @post.pet_explanation %></td>
+          </tr>
+          <tr>
+            <td>
+              <% if @post.user == current_user %>
+                <%= link_to "投稿編集", edit_public_post_path(@post.id) %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <% if @post.user == current_user %>
+                <%= link_to "投稿削除", public_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= form_with model: [@post,@post_comment], url: public_post_post_comments_path(@post.id), method: :post do |f| %>
+                <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+                <%= f.submit "送信する" %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <% @post.post_comments.each do |post_comment| %>
+                <%= post_comment.user.name %>
+                <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+                ::<%= post_comment.comment %>
+                <% if post_comment.user == current_user %>
+                  <%= link_to "コメントを削除", public_post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+                <% end %>
+              <% end %>
+            </td>
           </tr>
         </tbody>
       </table>
