@@ -6,8 +6,11 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save!
-    redirect_to public_post_path(@post.id)
+    if @post.save
+      redirect_to public_post_path(@post.id)
+    else
+      redirect_to new_public_post_path
+    end
   end
 
   def show
@@ -43,7 +46,7 @@ class Public::PostsController < ApplicationController
 
   def is_matching_login_user
     user_id = Post.find(params[:id]).user_id
-    login_user_ = current_user.id
+    login_user_id = current_user.id
     if(user_id != login_user_id)
       redirect_to public_posts_path
     end

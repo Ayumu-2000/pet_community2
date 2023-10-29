@@ -4,7 +4,11 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  def favorite_by?(user)
+  validates :genre_id, presence: true
+  validates :pet_name, presence: true
+  validates :pet_explanation, presence: true
+
+  def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
 end
