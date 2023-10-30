@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h2>検索ワード: <%= @word %></h2>
+      <table class="table table-hover table-inverse">
+        <% if @users.present? %>
+        <thead>
+          <tr>
+            <th>会員名</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= link_to user.name, public_user_path(user) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+        <% elsif @posts.present? %>
+        <thead>
+          <tr>
+            <td>ペットの名前</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @posts.each do |post| %>
+            <tr>
+              <td><%= link_to post.pet_name, public_post_path(post) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+        <% else %>
+          検索結果は見つかりませんでした
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+
+

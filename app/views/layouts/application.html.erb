@@ -30,6 +30,9 @@
               </li>
               <% elsif user_signed_in? %>
               <li>
+                <%= render 'public/partials/search' %>
+              </li>
+              <li>
                 <%= link_to "「マイページ」", public_user_path(current_user) %>
               </li>
               <li>
