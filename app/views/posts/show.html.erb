@@ -1,6 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="col_lg_12">
+      <p>
+        投稿にコメントしたい場合は<br>
+        新規登録またはログインを行って下さい
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col_lg_12">
       <h2>投稿詳細</h2>
       <table>
         <tbody>
@@ -25,15 +33,17 @@
               ♥<%= @post.favorites.count %> いいね
             </td>
           </tr>
+        </tbody>
+      </table>
+      <table>
+        <tbody>
+          <% @post.post_comments.each do |post_comment| %>
           <tr>
-            <td>
-              <% @post.post_comments.each do |post_comment| %>
-                <%= post_comment.user.name %>
-                <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-                ::<%= post_comment.comment %><br>
-              <% end %>
-            </td>
+            <td><%= post_comment.user.name %></td>
+            <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+            <td>::<%= post_comment.comment %></td>
           </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
