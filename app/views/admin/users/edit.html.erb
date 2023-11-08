@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h4>会員情報編集</h4>
+      <%= form_with model: @user, url: admin_user_path, method: :patch do |f| %>
+      <h4>メールアドレス</h4>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <h4>パスワード</h4>
+      <%= f.password_field :password, autocomplete: "current-password" %><br>
+      <%= f.submit "更新する" %>
+      <% end %>
+    </div>
+  </div>
+</div>

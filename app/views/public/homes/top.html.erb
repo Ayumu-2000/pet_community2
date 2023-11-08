@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col_lg_6">
+    <div class="col_lg_12">
       <h4><%= @user.name %>の投稿一覧</h4>
       <table class="table table-hover table-inverse">
         <thead>
@@ -23,11 +23,7 @@
             <td><%= post.pet_name %></td>
             <td><%= post.genre.genre_name %></td>
             <td><%= post.pet_explanation %></td>
-            <td>
-              <%= link_to public_user_path(post.user.id) do %>
-                :<%= post.user.name %>
-              <% end %>
-            </td>
+            <td>:<%= post.user.name %></td>
             <td>
               <%= link_to public_post_path(post.id) do %>
                 <%= post.post_comments.count %>件のコメント
@@ -38,15 +34,19 @@
         </tbody>
       </table>
     </div>
-    <div class="col-lg-6">
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
       <h4>いいねした投稿一覧</h4>
       <table class="table table-hover table-inverse">
         <thead>
-          <th>[ペットの名前]</th>
-          <th>[種類]</th>
-          <th>[ペットについて]</th>
-          <th>[投稿者]</th>
-          <th></th>
+          <tr>
+            <th>[ペットの名前]</th>
+            <th>[種類]</th>
+            <th>[ペットについて]</th>
+            <th>[投稿者]</th>
+            <th></th>
+          </tr>
         </thead>
         <tbody>
           <% @favorite_posts.each do |post| %>
@@ -55,7 +55,7 @@
             <td><%= post.genre.genre_name %></td>
             <td><%= post.pet_explanation %></td>
             <td>
-              <%= link_to public_user_path(post.user.id) do %>
+              <%= link_to user.name, public_user_path(post.user.id) do %>
                 :<%= post.user.name %>
               <% end %>
             </td>
