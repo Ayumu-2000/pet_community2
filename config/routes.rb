@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   resources :posts, only: [:show]
   root to: 'homes#top'
 
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
+    resources :genres, only: [:show]
     get "search" => "searches#search"
   end
 

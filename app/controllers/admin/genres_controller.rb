@@ -17,14 +17,20 @@ class Admin::GenresController < ApplicationController
   
   def create
     @genre = Genre.new(genre_params)
-    @genre.save
-    redirect_to admin_genres_path
+    if @genre.save
+      redirect_to admin_genres_path
+    else
+      redirect_to new_admin_genre_path
+    end
   end
 
   def update
     @genre = Genre.find(params[:id])
-    @genre.update(genre_params)
-    admin_genre_path(@genre.id)
+    if @genre.update(genre_params)
+      redirect_to admin_genre_path(@genre.id)
+    else
+      redirect_to edit_admin_genre_path(@genre.id)
+    end
   end
 
   private

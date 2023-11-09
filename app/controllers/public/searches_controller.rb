@@ -5,6 +5,8 @@ class Public::SearchesController < ApplicationController
 
     if @range == "User"
       @users = User.looks(params[:search], params[:word])
+    elsif @range == "Genre"
+      @genres = Genre.looks(params[:search], params[:word])
     else
       @posts = Post.looks(params[:search], params[:word])
     end

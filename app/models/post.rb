@@ -15,15 +15,15 @@ class Post < ApplicationRecord
   # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"
-      @post = Post.where("pet_name LIKE?","#{word}")
+      Post.where("pet_name LIKE?","#{word}")
     elsif search == "forward_match"
-      @post = Post.where("pet_name LIKE?","#{word}%")
+      Post.where("pet_name LIKE?","#{word}%")
     elsif search == "backward_match"
-      @post = Post.where("pet_name LIKE?","%#{word}")
+      Post.where("pet_name LIKE?","%#{word}")
     elsif search == "partial_match"
-      @post = Post.where("pet_name LIKE?","%#{word}%")
+      Post.where("pet_name LIKE?","%#{word}%")
     else
-      @post = Post.all
+      Post.all
     end
   end
 end
