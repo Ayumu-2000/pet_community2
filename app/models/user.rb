@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  validates :name, presence: true
+
   # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"
